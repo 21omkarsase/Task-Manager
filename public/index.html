@@ -4,44 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="./css/index.css" />
     <title>Task Manager|Home</title>
   </head>
   <body>
-    <section class="login-section">
-      <div class="login-area">
-        <h1>Welocome To Task Manager</h1>
-        <div class="main-login">
-          <img src="./assets/taskImg.jpg" alt="task image" />
-          <form class="login-form">
-            <div class="login-inputs">
-              <input class="username" type="text" placeholder="Username" />
-              <input class="password" type="password" placeholder="Password" />
+    <div class="taskPen">
+      <span class="pen"><i class="pens fa-solid fa-pen"></i>
+    </div>
+    <div class="taskCross">
+<span class="cross"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+      
+   
+    <section class="addTaskArea">
+        <div class="addTask">
+            <div class="addTask__header">
+            <h2>New Task</h2>
             </div>
-            <button class="submitBtn" type="submit">Sign in</button>
-            <p>Don't have an account? <a href="#">Sign up</a></p>
-          </form>
-        </div>
-      </div>
+            <div class="addTask__body">
+            <form class="task-form">
+                <div class="addTask__input">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" name="taskName" id="taskName" />
+                </div>
+                <div id="taskDueDate__input">
+                  <label for="taskDueDate">Due Date</label>
+                  <input type="date" name="duedate" id="taskDueDate">
+                </div>
+                <div class="addTask__input">
+                    <label for="taskDescription">Task Description</label>
+                <textarea  name="taskDescription" 
+                id="taskDescription"></textarea>
+                 </div>
+                 <button class="addTaskBtn">
+                    Add Task
+                </button>
+           </div>
     </section>
-    <section class="singup-section">
-      <div class="singup-area">
-        <h1>Welocome To Task Manager</h1>
-        <div class="main-singup">
-          <img src="./assets/taskImg.jpg" alt="task image" />
-          <form class="singup-form">
-            <div class="singup-inputs">
-              <input class="username" type="text" placeholder="Username" />
-              <input class="age" type="number" placeholder="Age" />
-              <input class="email" type="email" placeholder="Email" />
-              <input class="password" type="password" placeholder="Password" />
-            </div>
-            <button class="submitBtn" type="submit">Sign up</button>
-            <p>Already have an account? <a href="#">Sign in</a></p>
-          </form>
-        </div>
-      </div>
-    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
