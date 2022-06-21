@@ -7,45 +7,112 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    />
+      />
     <link rel="stylesheet" href="./css/index.css" />
     <title>Task Manager|Home</title>
   </head>
   <body>
     <div class="taskPen">
       <span class="pen"><i class="pens fa-solid fa-pen"></i>
-    </div>
-    <div class="taskCross">
-<span class="cross"><i class="fa-solid fa-xmark"></i></span>
-    </div>
-      
-   
-    <section class="addTaskArea">
+      </div>
+      <div class="taskCross">
+        <span class="cross"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+      <section class="addTaskArea">
+        <header>
+          <h1>Welcome To Task Manager App</h1>
+        </header>
         <div class="addTask">
-            <div class="addTask__header">
+          <div class="addTask__header">
             <h2>New Task</h2>
-            </div>
-            <div class="addTask__body">
+          </div>
+          <div class="addTask__body">
             <form class="task-form">
-                <div class="addTask__input">
-                    <label for="taskName">Task Name</label>
-                    <input type="text" name="taskName" id="taskName" />
-                </div>
-                <div id="taskDueDate__input">
-                  <label for="taskDueDate">Due Date</label>
-                  <input type="date" name="duedate" id="taskDueDate">
-                </div>
-                <div class="addTask__input">
-                    <label for="taskDescription">Task Description</label>
-                <textarea  name="taskDescription" 
-                id="taskDescription"></textarea>
-                 </div>
-                 <button class="addTaskBtn">
-                    Add Task
-                </button>
-           </div>
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
-    <script src="./js/index.js"></script>
-  </body>
-</html>
+              <div class="addTask__input">
+                <label for="taskName">Task Name</label>
+                <input type="text" name="taskName" id="taskName" />
+              </div>
+              <div id="taskDueDate__input">
+                <label for="taskDueDate">Due Date</label>
+                <input type="date" name="duedate" id="taskDueDate">
+              </div>
+              <div class="addTask__input">
+                <label for="taskDescription">Task Description</label>
+                <textarea name="taskDescription"
+                  id="taskDescription"></textarea>
+              </div>
+              <button class="addTaskBtn">
+                Add Task
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="allTasksArea">
+        <header>
+          <h1>Welcome To Task Manager App</h1>
+        </header>
+        <div class="taskList">
+          <div class="tasks">
+            <div class="task1 task">
+              <div class="content-area">
+                <label align="justify" for="taskTitle"><span class="heading">Ttile : </span> Task One</label>
+                <label align="justify" for="taskDue"><span class="heading">
+                  Due : 
+                </span> 11-Mar-2022</label>
+                <label for="Des"><span class="heading">
+                  Description :
+                </span>  </label>
+                  <p align="justify" class="content">Lor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200rulorem200runtnt ?</p>                    
+              </div>
+              <div class="sidebar">
+                    <span class="edit">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </span>
+                    <span class="trash"><i class="fa-solid fa-trash-can-arrow-up"></i></span>
+                  </div>
+            </div>
+            <div class="task1 task">
+              <div class="content-area">
+                <label align="justify" for="taskTitle"><span class="heading">Ttile : </span> Task One</label>
+                <label align="justify" for="taskDue"><span class="heading">
+                  Due : 
+                </span> 11-Mar-2022</label>
+                <label for="Des"><span class="heading">
+                  Description :
+                </span>  </label>
+                  <p align="justify" class="content">Lor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200rulorem200runtnt lorem100 ?</p>                    
+              </div>
+              <div class="sidebar">
+                    <span class="edit">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </span>
+                    <span class="trash"><i class="fa-solid fa-trash-can-arrow-up"></i></span>
+                  </div>
+            </div>
+            <div class="task1 task">
+              <div class="content-area">
+                <label align="justify" for="taskTitle"><span class="heading">Ttile : </span> Task One</label>
+                <label align="justify" for="taskDue"><span class="heading">
+                  Due : 
+                </span> 11-Mar-2022</label>
+                <label for="Des"><span class="heading">
+                  Description :
+                </span>  </label>
+                  <p align="justify" class="content">Lor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200runtLor lorem200 olorum ducimus.lorem200 Lorem ipsum dolor lorem200rulorem200runtnt ?</p>                    
+              </div>
+              <div class="sidebar">
+                    <span class="edit">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </span>
+                    <span class="trash"><i class="fa-solid fa-trash-can-arrow-up"></i></span>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+      <script src="./js/index.js"></script>
+    </body>
+  </html>
