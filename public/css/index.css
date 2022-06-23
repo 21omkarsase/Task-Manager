@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+
+/* //navbar area  */
+
 .navbar-area {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.829);
@@ -56,6 +59,11 @@
     gap: 50px;
 }
 
+.nav-link-div {
+    display: flex;
+    gap: 5px;
+}
+
 .navbar-nav .nav-links .nav-link {
     text-decoration: none;
     list-style: none;
@@ -71,4 +79,108 @@
     border-radius: 52%;
     cursor: pointer;
     height: auto;
+}
+
+/* //footer area  */
+.footer-area {
+    width: 100%;
+    padding: 80px 0px 60px 0;
+    background-color: rgba(0, 0, 0, 0.68);
+    color: white;
+}
+
+.footer-area li {
+    list-style: none;
+    text-decoration: none;
+}
+
+.footer {
+    width: 70%;
+    margin: 0 0 0 10%;
+}
+
+.footer-foot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-foot .other-info {
+    display: flex;
+    gap: 40px;
+}
+
+.about {
+    width: 40%;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.contacts,
+.features,
+.company {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.other-info h3 {
+    font-size: 23px;
+}
+
+.social-icons span {
+    font-size: 19px;
+}
+
+.linkedin span {
+    color: #0e76a8;
+}
+
+.instagram span {
+    color: red;
+}
+
+.twitter span {
+    color: #00acee;
+}
+
+.mail span {
+    color: pink;
+}
+
+.contacts a {
+    text-decoration: none;
+    color: white;
+}
+
+.features,
+.company li {
+    cursor: pointer;
+}
+
+.info-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.info-icons span {
+    font-size: 20px;
+}
+
+.globe {
+    color: #00acee;
+}
+
+.check {
+    color: greenyellow;
+}
+
+.clipboard-check {
+    color: #47B5FF;
+}
+
+.about p {
+    font-size: 20px;
 }
