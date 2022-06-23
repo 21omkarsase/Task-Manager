@@ -9,7 +9,7 @@ const sharp = require("sharp");
 //   sendCancellationEmail,
 // } = require("../emails/account");
 
-router.post("/users", async (req, res) => {
+router.post("/users/signup", async (req, res) => {
   const user = new User(req.body);
 
   try {
@@ -17,6 +17,10 @@ router.post("/users", async (req, res) => {
     // sendWelcomeEmail(user.email, user.name);
     const token = await user.generateAuthToken();
 
+    res.cookie("jwt", token, {
+      expires: new Date(Date.now() + 30000),
+      httpOnly: true,
+    });
     res.status(201).send({ user, token });
   } catch (error) {
     res.status(400).send(error);
@@ -31,7 +35,12 @@ router.post("/users/login", async (req, res) => {
     );
     const token = await user.generateAuthToken();
     // res.send({ user: user.getPublicProfile(), token });
+    res.cookie("jwt", token, {
+      expires: new Date(Date.now() + 30000),
+      httpOnly: true,
+    });
     res.send({ user, token });
+    console.log(req.cookies.jwt);
   } catch (error) {
     res.status(400).send(error);
   }

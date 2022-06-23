@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    background-color: white;
+}
+
+/* add task model section  */
+header h1 {
+    text-align: center;
+    margin: 20px 0 50px;
+    font-size: 35px;
+}
+
+.taskPen,
+.taskCross {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+.taskPen span,
+.taskCross span {
+    font-size: 30px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 51%;
+}
+
+.taskCross span {
+    font-size: 40px;
+    padding: 10px 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    min-width: 400px;
+    border-radius: 5px;
+    padding: 15px 10px;
+    font-size: 16px;
+    text-decoration: none;
+    outline: none;
+    resize: none;
+    border: 2px solid rgba(0, 0, 0, 0.543);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    min-width: 400px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    width: 100%;
+    min-width: 400px;
+    border-radius: 5px;
+    padding: 15px 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    outline: none;
+    color: white;
+    background-color: rgba(0, 128, 0, 0.772);
+    border: 1px solid rgba(0, 0, 0, 0.543);
+}
+
+
+
+.addTaskArea {
+    background-color: whitesmoke;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.formActive {
+    display: flex;
+}
+
+.taskCross {
+    display: none;
+}
+
+.taskPen {
+    display: block;
+}
+
+
+.addTask {
+    background-color: white;
+    padding: 30px 80px;
+    border-radius: 15px;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.addTask h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* all task section  */
+.allTasksArea {
+    /* background-color: white; */
+    padding: 0 0 100px 0;
+}
+
+.taskList {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.taskList h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.tasks {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.heading {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.task {
+    width: 400px;
+    min-width: 30px;
+    max-width: 400px;
+    border: 2px solid green;
+    height: 300px;
+    min-height: 250px;
+    padding: 25px 20px 25px 30px;
+    border-radius: 7px;
+    display: flex;
+    gap: 10px;
+}
+
+.content-area {
+    width: 89%;
+    word-wrap: break-word;
+}
+
+.content {
+    padding-right: 10px;
+}
+
+.trash,
+.edit {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.trash {
+    color: red;
+}
+
+.edit {
+    color: green;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

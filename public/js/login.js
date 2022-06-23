@@ -6,23 +6,23 @@ const form = document.querySelector(".login-form");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const email = email.value;
-  const pass = password.value;
+  const emailVal = email.value;
+  const passVal = password.value;
   const userData = {
-    email: email,
-    password: pass,
+    email: emailVal,
+    password: passVal,
   };
   console.log(JSON.stringify(userData));
-
-  const response = await fetch("http://localhost:3000/login", {
+  const response = await fetch("/users/login", {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(userData),
   });
 
-  if (response.status === 200) {
-    console.log(response);
-  }
+  const data = await response.json();
+  console.log(data);
+  window.location.href = "/";
 });

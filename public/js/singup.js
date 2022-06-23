@@ -9,6 +9,7 @@ const form = document.querySelector(".signup-form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const userData = {
+    name: username.value,
     email: email.value,
     age: age.value,
     email: email.value,
@@ -16,7 +17,7 @@ form.addEventListener("submit", async (e) => {
   };
   console.log(JSON.stringify(userData));
 
-  const response = await fetch("/users", {
+  const response = await fetch("/users/signup", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -25,11 +26,9 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify(userData),
   });
 
-  if (response.ok) {
-    alert("User created successfully");
-    console.log(response.body);
-  }
+  const data = await response.json();
+  console.log(data);
 });
 
-// harshAlashi@123.com
-// alashiHarsh123
+// xyz123@gmail.com
+// omkarsase123
