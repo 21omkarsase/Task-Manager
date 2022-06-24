@@ -120,13 +120,3 @@ userSchema.pre("remove", async function (next) {
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-
-// const me = new User({
-//   name: "      OMKAR   ",
-//   email: " xyz@gmai.com     ",
-//   password: "pass@123",
-// });
-
-// me.save()
-//   .then((result) => console.log(result))
-//   .catch((error) => console.log("Error", error));

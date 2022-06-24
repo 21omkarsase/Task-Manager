@@ -13,6 +13,7 @@ form.addEventListener("submit", async (e) => {
     password: passVal,
   };
   console.log(JSON.stringify(userData));
+
   const response = await fetch("/users/login", {
     method: "POST",
     headers: {
@@ -24,5 +25,5 @@ form.addEventListener("submit", async (e) => {
 
   const data = await response.json();
   console.log(data);
-  window.location.href = "/";
+  window.location.href = "/tasks";
 });

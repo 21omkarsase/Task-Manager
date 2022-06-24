@@ -38,9 +38,10 @@ header h1 {
     padding: 10px 20px;
 }
 
+
 textarea {
     width: 100%;
-    min-height: 150px;
+    min-height: 120px;
     min-width: 400px;
     border-radius: 5px;
     padding: 15px 10px;
@@ -85,12 +86,15 @@ button {
 
 
 .addTaskArea {
-    background-color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.694);
     display: none;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    width: 100%;
+    position: fixed;
+    padding-top: 50px;
 }
 
 .formActive {
@@ -99,16 +103,18 @@ button {
 
 .taskCross {
     display: none;
+    z-index: 10;
 }
 
 .taskPen {
     display: block;
+    z-index: 10;
 }
 
 
 .addTask {
     background-color: white;
-    padding: 30px 80px;
+    padding: 30px 60px;
     border-radius: 15px;
 }
 
@@ -127,6 +133,11 @@ button {
 .allTasksArea {
     /* background-color: white; */
     padding: 0 0 100px 0;
+}
+
+.allTasksArea h1 {
+    margin: 0;
+    padding: 20px 0;
 }
 
 .taskList {
@@ -209,4 +220,173 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* profile area section  */
+.profileSection {
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.694);
+    display: none;
+}
+
+.profileArea {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    background-color: rgb(39, 38, 38);
+    flex-direction: column;
+    gap: 20px;
+    padding: 50px 70px;
+    border-radius: 15px;
+}
+
+.profileArea h1 {
+    font-size: 35px;
+    color: whitesmoke;
+}
+
+.myprofile {
+    display: flex;
+    gap: 30px;
+}
+
+.myprofile ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.myprofile ul li {
+    list-style: none;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px 7px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profileSection label {
+    color: white;
+}
+
+.profileAreaBtns {
+    display: flex;
+    margin: 0 auto;
+    margin-left: 200px;
+    gap: 15px;
+}
+
+.profileAreaBtns button {
+    width: 100%;
+    min-width: 100px;
+    padding: 12px 40px;
+    font-weight: bolder;
+}
+
+.cancelBtn {
+    background-color: rgb(185, 46, 46);
+    color: white;
+}
+
+.saveBtn {
+    background-color: rgb(39, 132, 39);
+}
+
+.security {
+    display: none;
+}
+
+/* //navbar */
+
+.navbar-area {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.829);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    width: 80%;
+    margin: 0 0 0 10%;
+}
+
+.nav-links {
+    display: flex;
+    gap: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    padding: 5px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.seach-bar {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.seach-bar input {
+    width: 100%;
+    min-width: 100px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 16px;
+    text-decoration: none;
+    outline: none;
+    margin-bottom: 0;
+}
+
+.seach-bar span {
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(0, 246, 0);
+}
+
+.navbar-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-link-div {
+    display: flex;
+    gap: 5px;
+}
+
+.navbar-nav .nav-links .nav-link {
+    text-decoration: none;
+    list-style: none;
+    font-size: 18px;
+    cursor: pointer;
+    min-width: 22px;
+}
+
+
+.navbar-nav .brandLogo img {
+    width: 100%;
+    max-width: 60px;
+    border-radius: 52%;
+    cursor: pointer;
+    height: auto;
+}
+
+.signupbtn {
+    padding: 10px 20px;
+    border-radius: 10px;
 }

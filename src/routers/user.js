@@ -4,22 +4,19 @@ const User = require("../models/user");
 const auth = require("../middleware/auth");
 const multer = require("multer");
 const sharp = require("sharp");
-// const {
-//   sendWelcomeEmail,
-//   sendCancellationEmail,
-// } = require("../emails/account");
+const cookieParser = require("cookie-parser");
 
 router.post("/users/signup", async (req, res) => {
   const user = new User(req.body);
 
   try {
     await user.save();
-    // sendWelcomeEmail(user.email, user.name);
     const token = await user.generateAuthToken();
 
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 30000),
+      expires: new Date(Date.now() + 300000),
       httpOnly: true,
+      // secure:true
     });
     res.status(201).send({ user, token });
   } catch (error) {
@@ -34,13 +31,11 @@ router.post("/users/login", async (req, res) => {
       req.body.password
     );
     const token = await user.generateAuthToken();
-    // res.send({ user: user.getPublicProfile(), token });
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 30000),
+      expires: new Date(Date.now() + 300000),
       httpOnly: true,
     });
-    res.send({ user, token });
-    console.log(req.cookies.jwt);
+    res.status(201).render("index").send({ user, token });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -51,9 +46,6 @@ router.post("/users/logout", auth, async (req, res) => {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.token;
     });
-    // req.user.tokens = req.user.tokens.filter((token) => {
-    //   return token.token !== res.token;
-    // });
     await req.user.save();
     res.send();
   } catch (error) {
@@ -73,16 +65,9 @@ router.post("/users/logoutAll", auth, async (req, res) => {
 
 router.get("/users/me", auth, async (req, res) => {
   res.send(req.user);
-  //     try {
-  //     const users = await User.find({});
-  //     res.send(users);
-  //   } catch (e) {
-  //     res.status(500).send(e);
-  //   }
 });
 
 router.patch("/users/me", auth, async (req, res) => {
-  // router.patch("/users/:id", async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdate = ["name", "email", "age", "password"];
 
@@ -93,37 +78,19 @@ router.patch("/users/me", auth, async (req, res) => {
   if (!isOperationValid) {
     return res.status(400).send({ error: "Invalid update" });
   }
-
-  //   const _id = req.params.id;
-
   try {
-    // const user = await User.findById(_id);
-
     updates.forEach((update) => (req.user[update] = req.body[update]));
 
     await req.user.save();
-    // const user = await User.findByIdAndUpdate(_id, req.body, {
-    //   new: true,
-    //   runValidators: true,
-    // // });
-    // if (!user) {
-    //   return res.status(404).send();
-    // }
     res.send(req.user);
   } catch (e) {
     return res.status(400).send(e);
   }
 });
-// router.delete("/users/:id", async (req, res) => {
+
 router.delete("/users/me", auth, async (req, res) => {
   try {
-    // const user = await User.findByIdAndDelete(req.params.id);
-
-    // if (!user) {
-    //   return res.status(404).send();
-    // }
     await req.user.remove();
-    // sendCancellationEmail(req.user.email, req.user.name);
     return res.send(req.user);
   } catch (e) {
     res.status(400).send(e);
@@ -131,7 +98,6 @@ router.delete("/users/me", auth, async (req, res) => {
 });
 
 const upload = multer({
-  // dest: "avatars",
   limits: {
     fileSize: 1000000,
   },

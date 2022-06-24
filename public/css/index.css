@@ -13,6 +13,11 @@
     color: white;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 .navbar {
     width: 80%;
     margin: 0 0 0 10%;
@@ -32,7 +37,7 @@
 
 .seach-bar {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     align-items: center;
 }
 
@@ -44,6 +49,7 @@
     font-size: 16px;
     text-decoration: none;
     outline: none;
+    margin-bottom: 0px;
 }
 
 .seach-bar span {
@@ -55,7 +61,6 @@
 .navbar-nav ul {
     display: flex;
     align-items: center;
-    /* background-color: yellow; */
     gap: 50px;
 }
 
@@ -79,6 +84,112 @@
     border-radius: 52%;
     cursor: pointer;
     height: auto;
+}
+
+.signupbtn {
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* //main area  */
+
+
+.main-area {
+    width: 100%;
+    /* background-color: yellow; */
+}
+
+
+.main-area .main-div {
+    background: url("../assets/backgroundImage.webp") no-repeat center center/cover rgba(0, 0, 0, 0.708);
+    background-blend-mode: darken;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    gap: 25px;
+}
+
+.info-heading span {
+    font-size: 70px;
+    font-weight: bolder;
+}
+
+.info-text p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.joinBtn {
+    background-color: tomato;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.joinBtn a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.info-heading {
+    margin-top: -200px;
+}
+
+.sec-div {
+    width: 60%;
+    margin: 0 0 0 20%;
+}
+
+.sec-div img {
+    width: 100%;
+    min-width: 400px;
+    height: auto;
+}
+
+.div1-area {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    height: 70vh;
+    align-items: center;
+}
+
+.div1-area .div1-info {
+    width: 40%;
+}
+
+.div2-area {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    height: 70vh;
+    align-items: center;
+    padding-bottom: 90px;
+}
+
+.div1-info,
+.div2-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.last-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    height: 70vh;
+    align-items: center;
+    padding-bottom: 90px;
+}
+
+.lastdiv-quote h2 {
+    font-weight: bolder;
+    font-size: 29px;
 }
 
 /* //footer area  */
