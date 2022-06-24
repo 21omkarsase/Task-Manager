@@ -2,6 +2,18 @@ const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema(
   {
+    task: {
+      type: String,
+      required: true,
+      validate(value) {
+        if (value.length < 5) {
+          throw new Error("Task description must be at least 5 characters");
+        }
+      },
+    },
+    due: {
+      type: Date,
+    },
     description: {
       type: String,
       trim: true,

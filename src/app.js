@@ -36,8 +36,8 @@ app.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-app.get("/tasks", (req, res) => {
-  res.render("tasks");
+app.get("/user/mytasks", auth, (req, res) => {
+  res.render("mytasks");
 });
 
 // user routes start
@@ -49,7 +49,7 @@ app.post("/users/signup", async (req, res) => {
     const token = await user.generateAuthToken();
 
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 300000),
+      expires: new Date(Date.now() + 3000000),
       httpOnly: true,
       // secure:true
     });
@@ -67,10 +67,10 @@ app.post("/users/login", async (req, res) => {
     );
     const token = await user.generateAuthToken();
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 300000),
+      expires: new Date(Date.now() + 3000000),
       httpOnly: true,
     });
-    res.status(201).render("index").send({ user, token });
+    res.status(201).send({ user, token });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -189,7 +189,7 @@ app.get("/users/:id/avatar", async (req, res) => {
 //user routes end
 
 //task routes start
-app.post("/tasks", auth, async (req, res) => {
+app.post("/user/tasks", auth, async (req, res) => {
   const task = new Task({
     ...req.body,
     owner: req.user._id,
@@ -203,36 +203,37 @@ app.post("/tasks", auth, async (req, res) => {
   }
 });
 
-// app.get("/tasks", auth, async (req, res) => {
-//   const match = {};
-//   const sort = {};
+app.get("/user/tasks", auth, async (req, res) => {
+  const match = {};
+  const sort = {};
 
-//   if (req.query.completed) {
-//     match.completed = req.query.completed === "true";
-//   }
+  if (req.query.completed) {
+    match.completed = req.query.completed === "true";
+  }
 
-//   if (req.query.sortBy) {
-//     const parts = req.query.sortBy.split(":");
-//     sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
-//   }
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
 
-//   try {
-//     await req.user.populate({
-//       path: "tasks",
-//       match,
-//       options: {
-//         limit: parseInt(req.query.limit),
-//         skip: parseInt(req.query.skip),
-//         sort,
-//       },
-//     });
-//     res.render("tasks").status(200).send(req.user.tasks);
-//   } catch (e) {
-//     res.status(500).send(e);
-//   }
-// });
+  try {
+    await req.user.populate({
+      path: "tasks",
+      match,
+      options: {
+        limit: parseInt(req.query.limit),
+        skip: parseInt(req.query.skip),
+        sort,
+      },
+    });
+    // res.render("tasks");
+    res.send(req.user.tasks);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
 
-app.get("/tasks/:id", auth, async (req, res) => {
+app.get("/user/tasks/:id", auth, async (req, res) => {
   const _id = req.params.id;
 
   try {
@@ -246,7 +247,7 @@ app.get("/tasks/:id", auth, async (req, res) => {
   }
 });
 
-app.patch("/tasks/:id", auth, async (req, res) => {
+app.patch("/user/tasks/:id", auth, async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdate = ["description", "completed"];
   const isOperationValid = updates.every((update) => {
@@ -274,7 +275,7 @@ app.patch("/tasks/:id", auth, async (req, res) => {
   }
 });
 
-app.delete("/tasks/:id", auth, async (req, res) => {
+app.delete("/user/tasks/:id", auth, async (req, res) => {
   try {
     const task = await Task.findOneAndDelete({
       _id: req.params.id,

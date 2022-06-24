@@ -1,5 +1,6 @@
 // add task area imports
 
+const taskList = document.querySelector(".tasks");
 const taskPen = document.querySelector(".taskPen");
 const taskCross = document.querySelector(".taskCross");
 const addTaskArea = document.querySelector(".addTaskArea");
@@ -37,23 +38,6 @@ taskCross.addEventListener("click", () => {
   addTaskArea.classList.toggle("formActive");
   taskCross.style.display = "none";
   taskPen.style.display = "block";
-});
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  taskName.value = "";
-  taskDescription.value = "";
-  taskDueDate.value = "";
-  addTaskArea.classList.toggle("formActive");
-  taskCross.style.display = "none";
-  taskPen.style.display = "block";
-  const data = {
-    taskName: taskName.value,
-    taskDescription: taskDescription.value,
-    taskDueDate: new Date(taskDueDate.value).toUTCString(),
-    completed: false,
-  };
-  console.log(data);
 });
 
 //scrollbar
@@ -97,4 +81,107 @@ personalInfoBtn.addEventListener("click", () => {
     personalInfoBtn.style.borderBottom = "3px solid red";
     securityBtn.style.border = "1px solid black";
   }
+});
+
+const fetchTasks = async () => {
+  const response = await fetch("/user/tasks");
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+    let html = "";
+    data.forEach((task) => {
+      html += `
+            <div class="task1 task">
+            <div class="content-area">
+              <label align="justify" for="taskTitle"><span class="heading">Ttile
+                  :
+                </span>
+               ${task.task} </label>
+              <label align="justify" for="taskDue"><span class="heading">
+                  Due :
+                </span>
+               ${task.due}</label>
+              <label for="Des"><span class="heading"> Description : </span>
+              </label>
+              <p align="justify" class="content">
+               ${task.description}
+              </p>
+            </div>
+            <div class="sidebar">
+              <span class="edit">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </span>
+              <span class="trash"><i
+                  class="fa-solid fa-trash-can-arrow-up"
+                ></i></span>
+            </div>
+          </div>
+        </div>
+    `;
+    });
+    taskList.innerHTML = html;
+  }
+};
+fetchTasks();
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  taskCross.style.display = "none";
+  taskPen.style.display = "block";
+  addTaskArea.classList.toggle("formActive");
+  const userData = {
+    task: taskName.value,
+    description: taskDescription.value,
+    due: new Date(taskDueDate.value).toUTCString(),
+    completed: false,
+  };
+  console.log(userData);
+
+  const response = await fetch("/user/tasks", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+    const newTask = document.createElement("div");
+    newTask.classList.add("task");
+    newTask.innerHTML = `
+            <div class="content-area">
+            <label align="justify" for="taskTitle"><span class="heading">Ttile
+                :
+              </span>
+            ${taskName.value} </label>
+            <label align="justify" for="taskDue"><span class="heading">
+                Due :
+              </span>
+              ${taskDescription.value}</label>
+              <label for="Des"><span class="heading"> Description : </span>
+            </label>
+            <p align="justify" class="content">
+            ${new Date(taskDueDate.value).toUTCString()}
+            </p>
+          </div>
+          <div class="sidebar">
+            <span class="edit">
+              <i class="fa-solid fa-pen-to-square"></i>
+              </span>
+              <span class="trash"><i
+              class="fa-solid fa-trash-can-arrow-up"
+              ></i></span>
+              </div>
+              </div>
+        `;
+    taskList.insertBefore(newTask, taskList.children[0]);
+  }
+
+  taskName.value = "";
+  taskDescription.value = "";
+  taskDueDate.value = "";
 });

@@ -29,7 +29,7 @@ form.addEventListener("submit", async (e) => {
   const data = await response.json();
   console.log(data);
 
-  window.location.href = "/tasks";
+  window.location.href = "/user/mytasks";
 });
 
 // xyz123@gmail.com
