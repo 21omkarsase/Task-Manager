@@ -34,7 +34,18 @@ const personalInfo = document.querySelector(".profile-content-area");
 
 const personalInfoBtn = document.querySelector(".personalInfoBtn");
 const securityBtn = document.querySelector(".securityBtn");
+
+const username = document.getElementById("username");
+const email = document.getElementById("email");
+const age = document.getElementById("age");
 const profileStyles = getComputedStyle(profileSection);
+const newPassword = document.getElementById("newPassword");
+const confirmPassword = document.getElementById("confirmPassword");
+const saveBtn = document.querySelector(".saveBtn");
+
+const logout = document.querySelector(".logout");
+const logoutall = document.querySelector(".logoutall");
+const deleteAccount = document.querySelector(".deleteAccount");
 
 //add task area
 
@@ -179,7 +190,6 @@ form.addEventListener("submit", async (e) => {
 const deleteTask = async (el) => {
   const taskId =
     el.parentElement.parentElement.firstElementChild.lastElementChild.innerText;
-  // const url=`/`
   const response = await fetch(`/user/tasks/${taskId}`, {
     method: "DELETE",
     headers: {
@@ -233,4 +243,90 @@ updateForm.addEventListener("submit", async (e) => {
   taskUpdatedDescription.value = "";
   updateTaskArea.style.display = "none";
   fetchTasks();
+});
+const getUser = async () => {
+  const response = await fetch("/users/me");
+  const data = await response.json();
+  username.value = data.name;
+  age.value = data.age;
+  email.value = data.email;
+};
+
+getUser();
+let isMatch = false;
+const updateUserInfo = async () => {
+  if (newPassword.value && confirmPassword.value) {
+    if (newPassword.value === confirmPassword.value) {
+      isMatch = true;
+    }
+  }
+  let updatedUserData = {};
+  if (isMatch) {
+    updatedUserData = {
+      name: username.value,
+      age: age.value,
+      email: email.value,
+      password: confirmPassword.value,
+    };
+  } else {
+    updatedUserData = {
+      name: username.value,
+      age: age.value,
+      email: email.value,
+    };
+  }
+  const response = await fetch("/users/me", {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedUserData),
+  });
+  const data = await response.json();
+  console.log(data);
+  newPassword.value = "";
+  confirmPassword.value = "";
+  profileSection.style.display = "none";
+  getUser();
+};
+saveBtn.addEventListener("click", updateUserInfo);
+
+logout.addEventListener("click", async () => {
+  confirm("Are you sure want to log out");
+  const response = await fetch("/users/logout", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  // const data = await response.json();
+  window.location.href = "/";
+});
+
+logoutall.addEventListener("click", async () => {
+  confirm("You will logout from all active devieces");
+  const response = await fetch("/users/logoutAll", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  // const data = await response.json();
+  window.location.href = "/";
+});
+
+deleteAccount.addEventListener("click", async () => {
+  confirm("Your account will be deleted permanently");
+  const response = await fetch("/users/me", {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  // const data = await response.json();
+  window.location.href = "/";
 });

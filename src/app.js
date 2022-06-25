@@ -91,6 +91,7 @@ app.post("/users/logout", auth, async (req, res) => {
 
 app.post("/users/logoutAll", auth, async (req, res) => {
   try {
+    res.clearCookie("jwt");
     req.user.tokens = [];
     await req.user.save();
     req.send();
@@ -126,6 +127,7 @@ app.patch("/users/me", auth, async (req, res) => {
 
 app.delete("/users/me", auth, async (req, res) => {
   try {
+    res.clearCookie("jwt");
     await req.user.remove();
     return res.send(req.user);
   } catch (e) {

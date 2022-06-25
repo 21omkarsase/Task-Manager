@@ -29,42 +29,45 @@
                 Personal Information
               </li>
               <li class="securityBtn">Security</li>
+              <li class="logout">Logout</li>
+              <li class="logoutall">Logout from all devices</li>
+              <li class="deleteAccount">Delete Account</li>
             </ul>
           </div>
           <div class="profile-content-area">
             <div class="personalInfo">
               <div class="username-area">
                 <label for="Username">Username</label>
-                <input type="text" name="username" />
+                <input id="username" type="text" name="username"  required/>
               </div>
               <div class="age-area">
                 <label for="age">Age</label>
-                <input type="number" name="userage" />
+                <input id="age" type="number" name="userage"  required/>
               </div>
               <div class="email-area">
                 <label for="useremail">Email</label>
-                <input type="email" name="useremail" />
+                <input id="email" type="email" name="useremail" required />
               </div>
             </div>
           </div>
           <div class="security">
-            <div class="currentPass">
+            {{!-- <div class="currentPass">
               <label for="currentPass">Current Password</label>
               <input type="password" name="currnetPass" />
-            </div>
+            </div> --}}
             <div class="newPass">
               <label for="newPass">New Password</label>
-              <input type="password" name="newPass" />
+              <input id="newPassword" type="password" name="newPass" />
             </div>
             <div class="confirmPass">
               <label for="confirmPass">Confirm Password</label>
-              <input type="password" name="confirmPass" />
+              <input id="confirmPassword" type="password" name="confirmPass" />
             </div>
           </div>
         </div>
         <div class="profileAreaBtns">
           <button class="cancelBtn" type="button">Cancel</button>
-          <button class="saveBtn">Save</button>
+          <button type="submit" class="saveBtn">Save</button>
         </div>
       </div>
     </section>
@@ -107,7 +110,6 @@
         </nav>
       </div>
     </section>
-    
 <section class="updateTaskArea">
       <div class="updateTask">
         <div class="updateTask__header">
