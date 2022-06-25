@@ -249,7 +249,7 @@ app.get("/user/tasks/:id", auth, async (req, res) => {
 
 app.patch("/user/tasks/:id", auth, async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdate = ["description", "completed"];
+  const allowedUpdate = ["task", "due", "description", "completed"];
   const isOperationValid = updates.every((update) => {
     return allowedUpdate.includes(update);
   });

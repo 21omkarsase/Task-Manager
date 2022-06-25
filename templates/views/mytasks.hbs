@@ -107,6 +107,36 @@
         </nav>
       </div>
     </section>
+    
+<section class="updateTaskArea">
+      <div class="updateTask">
+        <div class="updateTask__header">
+          <h2>Update Task</h2>
+        </div>
+        <div class="updateTask__body">
+          <form class="updateTask-form">
+            <div class="updateTask__input">
+              <label for="taskUpdatedName">Task Name</label>
+              <input type="text" name="taskUpdatedName" id="taskUpdatedName" required />
+            </div>
+            <div id="taskDueDate__input">
+              <label for="taskUpdatedDueDate">Due Date</label>
+              <input type="date" name="taskUpdatedDueDate" id="taskUpdatedDueDate" required />
+            </div>
+            <div class="updateTask__input">
+              <label for="taskUpdatedDescription">Task Description</label>
+              <textarea
+                name="taskUpdatedDescription"
+                id="taskUpdatedDescription"
+                required
+              ></textarea>
+            </div>
+            <button onclick="closeUpdateTaskModal(this)" type="button" class="cancelTaskBtn">Cancel</button>
+            <button type="submit" class="updateTaskBtn">Update Task</button>
+          </form>
+        </div>
+      </div>
+    </section>
     <section class="addTaskArea">
       <div class="addTask">
         <div class="addTask__header">

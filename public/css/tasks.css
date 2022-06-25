@@ -85,7 +85,8 @@ button {
 
 
 
-.addTaskArea {
+.addTaskArea,
+.updateTaskArea {
     background-color: rgba(0, 0, 0, 0.694);
     display: none;
     /* justify-content: center; */
@@ -112,19 +113,28 @@ button {
 }
 
 
-.addTask {
+.addTask,
+.updateTask {
     background-color: white;
     padding: 30px 60px;
     border-radius: 15px;
 }
 
-.task-form {
+.updateTask {
+    width: 50%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.task-form,
+.updateTask-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.addTask h2 {
+.addTask h2,
+.updateTask h2 {
     font-size: 30px;
     margin-bottom: 20px;
 }
@@ -197,6 +207,10 @@ button {
 
 .edit {
     color: green;
+}
+
+.taskId {
+    font-size: 0px;
 }
 
 .sidebar {
