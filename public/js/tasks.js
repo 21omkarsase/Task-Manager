@@ -181,7 +181,9 @@ form.addEventListener("submit", async (e) => {
     const data = await response.json();
     fetchTasks();
   }
-
+  if (response.status === 404) {
+    alert("Cant't create a task");
+  }
   taskName.value = "";
   taskDescription.value = "";
   taskDueDate.value = "";
@@ -198,14 +200,16 @@ const deleteTask = async (el) => {
     },
   });
 
-  const data = await response.json();
+  if (response.status === 404) {
+    alert("Cant't create a task");
+  }
 
   fetchTasks();
 };
 
 let updateTaskId = "";
-
-const updateTask = (el) => {
+const currentData = {};
+const updateTask = async (el) => {
   if (
     profileStyles.display === "none" &&
     addTaskAreaStyles.display === "none"
@@ -214,6 +218,15 @@ const updateTask = (el) => {
     updateTaskId =
       el.parentElement.parentElement.firstElementChild.lastElementChild
         .innerText;
+
+    const response = await fetch(`/user/tasks/${updateTaskId}`);
+    const data = await response.json();
+    let duedate = data.due.split("T")[0];
+    // console.log(data);
+    taskUpdatedName.value = data.task;
+    taskUpdatedDescription.value = data.description;
+    taskUpdatedDueDate.value = duedate;
+    // console.log(taskName.value, taskDescription.value, taskDueDate.value);
   }
 };
 
@@ -237,19 +250,25 @@ updateForm.addEventListener("submit", async (e) => {
     body: JSON.stringify(updatedData),
   });
 
-  const data = await response.json();
   taskUpdatedName.value = "";
   taskUpdatedDueDate.value = "";
   taskUpdatedDescription.value = "";
   updateTaskArea.style.display = "none";
   fetchTasks();
+  if (response.status === 404) {
+    alert("Cant't update a task");
+  }
 });
 const getUser = async () => {
   const response = await fetch("/users/me");
   const data = await response.json();
-  username.value = data.name;
-  age.value = data.age;
-  email.value = data.email;
+  if (response.ok) {
+    username.value = data.name;
+    age.value = data.age;
+    email.value = data.email;
+  } else {
+    alert("User information currently unavaliable");
+  }
 };
 
 getUser();
@@ -283,8 +302,11 @@ const updateUserInfo = async () => {
     },
     body: JSON.stringify(updatedUserData),
   });
-  const data = await response.json();
-  console.log(data);
+  if (response.ok) {
+    const data = await response.json();
+  } else {
+    alert("Cant't update user");
+  }
   newPassword.value = "";
   confirmPassword.value = "";
   profileSection.style.display = "none";
@@ -293,40 +315,52 @@ const updateUserInfo = async () => {
 saveBtn.addEventListener("click", updateUserInfo);
 
 logout.addEventListener("click", async () => {
-  confirm("Are you sure want to log out");
-  const response = await fetch("/users/logout", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  // const data = await response.json();
-  window.location.href = "/";
+  if (confirm("Are you sure want to log out")) {
+    const response = await fetch("/users/logout", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      alert("user logout failed");
+      return;
+    }
+    window.location.href = "/";
+  }
 });
 
 logoutall.addEventListener("click", async () => {
-  confirm("You will logout from all active devieces");
-  const response = await fetch("/users/logoutAll", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  // const data = await response.json();
-  window.location.href = "/";
+  if (confirm("You will logout from all active devieces")) {
+    const response = await fetch("/users/logoutAll", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      alert("Logout failed");
+      return;
+    }
+    window.location.href = "/";
+  }
 });
 
 deleteAccount.addEventListener("click", async () => {
-  confirm("Your account will be deleted permanently");
-  const response = await fetch("/users/me", {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  // const data = await response.json();
-  window.location.href = "/";
+  if (confirm("Your account will be deleted permanently")) {
+    const response = await fetch("/users/me", {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      alert("Account delete failed");
+      return;
+    }
+    window.location.href = "/";
+  }
 });

@@ -31,6 +31,3 @@ form.addEventListener("submit", async (e) => {
 
   window.location.href = "/user/mytasks";
 });
-
-// xyz123@gmail.com
-// omkarsase123

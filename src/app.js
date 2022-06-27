@@ -55,7 +55,7 @@ app.post("/users/signup", async (req, res) => {
     });
     res.status(201).send({ user, token });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: "Authenticaion failed" });
   }
 });
 
@@ -72,7 +72,7 @@ app.post("/users/login", async (req, res) => {
     });
     res.status(201).send({ user, token });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: "Authenticaion failed" });
   }
 });
 
@@ -85,7 +85,7 @@ app.post("/users/logout", auth, async (req, res) => {
     await req.user.save();
     res.send();
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ error: "Something went wrong!" });
   }
 });
 
@@ -96,7 +96,7 @@ app.post("/users/logoutAll", auth, async (req, res) => {
     await req.user.save();
     req.send();
   } catch (error) {
-    res.status(500).send();
+    res.status(500).send({ error: "Something went wrong!" });
   }
 });
 
@@ -121,7 +121,7 @@ app.patch("/users/me", auth, async (req, res) => {
     await req.user.save();
     res.send(req.user);
   } catch (e) {
-    return res.status(400).send(e);
+    return res.status(400).send({ error: "User update failed" });
   }
 });
 
@@ -131,63 +131,63 @@ app.delete("/users/me", auth, async (req, res) => {
     await req.user.remove();
     return res.send(req.user);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({ error: "Delete user failed" });
   }
 });
 
-const upload = multer({
-  limits: {
-    fileSize: 1000000,
-  },
-  fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-      return cb(new Error("Please upload a pdf file"));
-    }
-    cb(undefined, true);
-  },
-});
+// const upload = multer({
+//   limits: {
+//     fileSize: 1000000,
+//   },
+//   fileFilter(req, file, cb) {
+//     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+//       return cb(new Error("Please upload a pdf file"));
+//     }
+//     cb(undefined, true);
+//   },
+// });
 
-app.post(
-  "/users/me/avatar",
-  auth,
-  upload.single("avatar"),
-  async (req, res) => {
-    const buffer = await sharp(req.file.buffer)
-      .resize({ width: 250, height: 250 })
-      .png()
-      .toBuffer();
+// app.post(
+//   "/users/me/avatar",
+//   auth,
+//   upload.single("avatar"),
+//   async (req, res) => {
+//     const buffer = await sharp(req.file.buffer)
+//       .resize({ width: 250, height: 250 })
+//       .png()
+//       .toBuffer();
 
-    req.user.avatar = buffer;
-    await req.user.save();
-    res.send();
-  },
-  (error, req, res, next) => {
-    res.status(400).send({
-      error:
-        "Please upload a image file of type .jpg,.jpeg or .png (Should not exceed limit of 1mb)",
-    });
-  }
-);
+//     req.user.avatar = buffer;
+//     await req.user.save();
+//     res.send();
+//   },
+//   (error, req, res, next) => {
+//     res.status(400).send({
+//       error:
+//         "Please upload a image file of type .jpg,.jpeg or .png (Should not exceed limit of 1mb)",
+//     });
+//   }
+// );
 
-app.delete("/users/me/avatar", auth, async (req, res) => {
-  req.user.avatar = undefined;
-  await req.user.save();
-  res.send();
-});
+// app.delete("/users/me/avatar", auth, async (req, res) => {
+//   req.user.avatar = undefined;
+//   await req.user.save();
+//   res.send();
+// });
 
-app.get("/users/:id/avatar", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
+// app.get("/users/:id/avatar", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id);
 
-    if (!user || !user.avatar) {
-      throw new Error();
-    }
-    res.set("Content-Type", "image/png");
-    res.send(user.avatar);
-  } catch (e) {
-    res.status(404).send();
-  }
-});
+//     if (!user || !user.avatar) {
+//       throw new Error();
+//     }
+//     res.set("Content-Type", "image/png");
+//     res.send(user.avatar);
+//   } catch (e) {
+//     res.status(404).send();
+//   }
+// });
 //user routes end
 
 //task routes start
@@ -201,7 +201,7 @@ app.post("/user/tasks", auth, async (req, res) => {
     await task.save();
     res.status(201).send(task);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({ error: "No Tasks Found" });
   }
 });
 
@@ -231,7 +231,7 @@ app.get("/user/tasks", auth, async (req, res) => {
     // res.render("tasks");
     res.send(req.user.tasks);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).send({ error: "Create task failed" });
   }
 });
 
@@ -245,7 +245,7 @@ app.get("/user/tasks/:id", auth, async (req, res) => {
     }
     res.send(task);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ error: "Task not found" });
   }
 });
 
@@ -273,7 +273,7 @@ app.patch("/user/tasks/:id", auth, async (req, res) => {
     await task.save();
     res.send(task);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).send({ error: "Can't update task!" });
   }
 });
 
@@ -288,7 +288,7 @@ app.delete("/user/tasks/:id", auth, async (req, res) => {
     }
     res.send(task);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).send({ error: "Update task failed" });
   }
 });
 
