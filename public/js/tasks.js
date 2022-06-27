@@ -1,3 +1,6 @@
+//loading spinner
+const spinner = document.querySelector(".loading-spinner");
+
 // add task area imports
 
 const taskList = document.querySelector(".tasks");
@@ -167,7 +170,7 @@ form.addEventListener("submit", async (e) => {
     due: new Date(taskDueDate.value).toUTCString(),
     completed: false,
   };
-
+  spinner.style.display = "block";
   const response = await fetch("/user/tasks", {
     method: "POST",
     headers: {
@@ -179,11 +182,14 @@ form.addEventListener("submit", async (e) => {
 
   if (response.ok) {
     const data = await response.json();
+    spinner.style.display = "none";
     fetchTasks();
   }
+  spinner.style.display = "none";
   if (response.status === 404) {
     alert("Cant't create a task");
   }
+
   taskName.value = "";
   taskDescription.value = "";
   taskDueDate.value = "";
@@ -192,6 +198,8 @@ form.addEventListener("submit", async (e) => {
 const deleteTask = async (el) => {
   const taskId =
     el.parentElement.parentElement.firstElementChild.lastElementChild.innerText;
+
+  spinner.style.display = "block";
   const response = await fetch(`/user/tasks/${taskId}`, {
     method: "DELETE",
     headers: {
@@ -200,10 +208,10 @@ const deleteTask = async (el) => {
     },
   });
 
+  spinner.style.display = "none";
   if (response.status === 404) {
     alert("Cant't create a task");
   }
-
   fetchTasks();
 };
 
@@ -218,15 +226,15 @@ const updateTask = async (el) => {
     updateTaskId =
       el.parentElement.parentElement.firstElementChild.lastElementChild
         .innerText;
-
+    spinner.style.display = "block";
     const response = await fetch(`/user/tasks/${updateTaskId}`);
     const data = await response.json();
+    spinner.style.display = "none";
     let duedate = data.due.split("T")[0];
     // console.log(data);
     taskUpdatedName.value = data.task;
     taskUpdatedDescription.value = data.description;
     taskUpdatedDueDate.value = duedate;
-    // console.log(taskName.value, taskDescription.value, taskDueDate.value);
   }
 };
 
@@ -241,6 +249,7 @@ updateForm.addEventListener("submit", async (e) => {
     due: taskUpdatedDueDate.value,
     description: taskUpdatedDescription.value,
   };
+  spinner.style.display = "block";
   const response = await fetch(`/user/tasks/${updateTaskId}`, {
     method: "PATCH",
     headers: {
@@ -249,7 +258,7 @@ updateForm.addEventListener("submit", async (e) => {
     },
     body: JSON.stringify(updatedData),
   });
-
+  spinner.style.display = "none";
   taskUpdatedName.value = "";
   taskUpdatedDueDate.value = "";
   taskUpdatedDescription.value = "";
@@ -260,8 +269,10 @@ updateForm.addEventListener("submit", async (e) => {
   }
 });
 const getUser = async () => {
+  spinner.style.display = "block";
   const response = await fetch("/users/me");
   const data = await response.json();
+  spinner.style.display = "none";
   if (response.ok) {
     username.value = data.name;
     age.value = data.age;
@@ -294,6 +305,7 @@ const updateUserInfo = async () => {
       email: email.value,
     };
   }
+  spinner.style.display = "block";
   const response = await fetch("/users/me", {
     method: "PATCH",
     headers: {
@@ -304,9 +316,12 @@ const updateUserInfo = async () => {
   });
   if (response.ok) {
     const data = await response.json();
+    spinner.style.display = "none";
   } else {
+    spinner.style.display = "none";
     alert("Cant't update user");
   }
+  spinner.style.display = "none";
   newPassword.value = "";
   confirmPassword.value = "";
   profileSection.style.display = "none";
@@ -316,6 +331,7 @@ saveBtn.addEventListener("click", updateUserInfo);
 
 logout.addEventListener("click", async () => {
   if (confirm("Are you sure want to log out")) {
+    spinner.style.display = "block";
     const response = await fetch("/users/logout", {
       method: "POST",
       headers: {
@@ -323,6 +339,7 @@ logout.addEventListener("click", async () => {
         "Content-Type": "application/json",
       },
     });
+    spinner.style.display = "none";
     if (!response.ok) {
       alert("user logout failed");
       return;
@@ -333,6 +350,7 @@ logout.addEventListener("click", async () => {
 
 logoutall.addEventListener("click", async () => {
   if (confirm("You will logout from all active devieces")) {
+    spinner.style.display = "block";
     const response = await fetch("/users/logoutAll", {
       method: "POST",
       headers: {
@@ -340,6 +358,7 @@ logoutall.addEventListener("click", async () => {
         "Content-Type": "application/json",
       },
     });
+    spinner.style.display = "none";
     if (!response.ok) {
       alert("Logout failed");
       return;
@@ -350,6 +369,7 @@ logoutall.addEventListener("click", async () => {
 
 deleteAccount.addEventListener("click", async () => {
   if (confirm("Your account will be deleted permanently")) {
+    spinner.style.display = "block";
     const response = await fetch("/users/me", {
       method: "DELETE",
       headers: {
@@ -357,6 +377,7 @@ deleteAccount.addEventListener("click", async () => {
         "Content-Type": "application/json",
       },
     });
+    spinner.style.display = "none";
     if (!response.ok) {
       alert("Account delete failed");
       return;
