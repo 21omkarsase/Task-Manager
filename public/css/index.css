@@ -7,6 +7,18 @@
 
 /* //navbar area  */
 
+.bar {
+    display: none;
+}
+
+.crossBarIcon {
+    display: none;
+}
+
+.bar span {
+    font-size: 50px;
+}
+
 .navbar-area {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.829);
@@ -89,14 +101,18 @@ a {
 .signupbtn {
     padding: 10px 20px;
     border-radius: 10px;
+    background-color: tomato;
 }
 
 /* //main area  */
 
+main p,
+main h2 {
+    font-size: 22px;
+}
 
 .main-area {
     width: 100%;
-    /* background-color: yellow; */
 }
 
 
@@ -123,9 +139,12 @@ a {
 }
 
 .joinBtn {
-    background-color: tomato;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background-color: rgb(224, 68, 40);
+    padding: 15px 25px;
+    border-radius: 9px;
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 30px;
 }
 
 .joinBtn a {
@@ -144,53 +163,39 @@ a {
     margin: 0 0 0 20%;
 }
 
-.sec-div img {
-    width: 100%;
-    min-width: 400px;
-    height: auto;
-}
-
 .div1-area {
     display: flex;
     justify-content: space-between;
-    gap: 100px;
-    height: 70vh;
     align-items: center;
+    padding: 100px 0;
+
+    gap: 100px;
 }
 
-.div1-area .div1-info {
-    width: 40%;
-}
 
 .div2-area {
     display: flex;
     justify-content: space-between;
-    gap: 100px;
-    height: 70vh;
     align-items: center;
-    padding-bottom: 90px;
+    padding: 100px 0;
+
+    gap: 100px;
 }
 
-.div1-info,
-.div2-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.div2-area img {
+    width: 350px;
 }
+
 
 .last-div {
     display: flex;
     justify-content: space-between;
-    gap: 100px;
-    height: 70vh;
     align-items: center;
-    padding-bottom: 90px;
+    padding: 100px 0;
+
+    gap: 100px;
 }
 
-.lastdiv-quote h2 {
-    font-weight: bolder;
-    font-size: 29px;
-}
 
 /* //footer area  */
 .footer-area {
@@ -294,4 +299,381 @@ a {
 
 .about p {
     font-size: 20px;
+}
+
+
+/* //authentication  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.loading-spinner {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.445);
+    background-blend-mode: darken;
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+
+.lds-hourglass {
+    width: 300px;
+    height: 300px;
+    position: fixed;
+    left: 45%;
+    top: 25%;
+}
+
+.lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: #e96847 transparent #e96847 transparent;
+    animation: lds-hourglass 1.2s infinite;
+}
+
+@keyframes lds-hourglass {
+    0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+    50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    100% {
+        transform: rotate(1800deg);
+    }
+}
+
+.crossSignupHeader,
+.crossLoginHeader {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.taskCross span {
+    font-size: 30px;
+    cursor: pointer;
+    background-color: rgb(226, 16, 16);
+    color: white;
+    padding: 15px 21px;
+    border-radius: 51%;
+    cursor: pointer;
+}
+
+.signupbarlink,
+.loginbarlink {
+    color: blue;
+    cursor: pointer;
+}
+
+.login-section,
+.signup-section {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.445);
+    background-blend-mode: darken;
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+
+.login-area,
+.signup-area {
+    background-color: white;
+    padding: 60px 0;
+    box-shadow:
+        inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    gap: 50px;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+}
+
+.login-area h1,
+.signup-area h1 {
+    font-size: 2.3em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.main-login img,
+.main-signup img {
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    border-radius: 51%;
+}
+
+.main-login,
+.main-signup {
+    display: flex;
+    gap: 60px;
+}
+
+.login-form,
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+input {
+    width: 100%;
+    min-width: 200px;
+    border-radius: 5px;
+    padding: 15px 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    width: 100%;
+    min-width: 400px;
+    border-radius: 5px;
+    padding: 15px 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    outline: none;
+    color: white;
+    background-color: #066093;
+    border: 1px solid rgba(0, 0, 0, 0.543);
+}
+
+.signup-inputs input {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+    width: 100%;
+}
+
+.signup-section img {
+    max-width: 400px;
+
+}
+
+/* //media queries  */
+/* //footer  */
+@media screen and (max-width:905px) {
+    .footer-foot {
+        flex-direction: column;
+    }
+
+    .footer-foot .about {
+        width: 100%;
+        padding-bottom: 15px;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .footer {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width:390px) {
+    .footer-foot .other-info {
+        gap: 11px;
+    }
+}
+
+@media screen and (max-width:580px) {
+    header h1 {
+        font-size: 28px;
+    }
+}
+
+/* //navbar  */
+@media screen and (max-width:1269px) {
+    .navbar-nav ul {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width:1155px) {
+    .navbar {
+        width: 95%;
+        margin: 0 2%;
+    }
+}
+
+@media screen and (max-width:975px) {
+    .seach-bar input {
+        display: none;
+    }
+}
+
+@media screen and (max-width:730px) {
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .bar {
+        display: block;
+        cursor: pointer;
+    }
+
+    .barnav {
+        padding: 5px 10px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .brandLogo {
+        align-self: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        display: none;
+        gap: 20px;
+    }
+
+    .navbar-nav ul {
+        flex-direction: column;
+    }
+
+    .nav-link-div {
+        align-self: flex-start;
+        gap: 10px;
+    }
+
+    .seach-bar {
+        align-self: center;
+        padding: 15px 0px;
+        justify-content: center;
+    }
+}
+
+/* //main  area  */
+@media screen and (max-width:1309px) {
+
+    .last-div,
+    .div1-area {
+        flex-wrap: wrap;
+    }
+
+    .div2-area {
+        flex-wrap: wrap-reverse;
+    }
+}
+
+@media screen and (max-width:879px) {
+    .main-div {
+        padding: 0 100px;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .sec-div img {
+        width: 245px;
+    }
+
+    .joinBtn {
+        width: 234px;
+    }
+
+    .main-div {
+        padding: 0 20px;
+    }
+}
+
+/* //login  */
+
+@media screen and (max-width:1252px) {
+
+    .login-area,
+    .signup-area {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:970px) {
+
+    .crossLoginHeader,
+    .crossSignupHeader {
+        flex-wrap: wrap-reverse;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .login-area img,
+    .signup-area img {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media screen and (max-width:786px) {
+
+    .signup-section,
+    .login-section {
+        height: 100vh;
+        overflow: scroll;
+    }
+
+    .main-login,
+    .main-signup {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width:543px) {
+
+    .main-login input,
+    .main-signup input {
+        width: 310px;
+        margin-left: 15px;
+    }
+
+    .main-login button,
+    .main-signup button {
+        min-width: 10px;
+        width: 235px;
+    }
+
+    .login-form,
+    .signup-form {
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media screen and (max-width:400px) {
+
+    .main-login input,
+    .main-signup input {
+        width: 250px;
+        margin-left: 15px;
+    }
 }

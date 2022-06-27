@@ -25,15 +25,12 @@ hbs.registerPartials(partialsPath);
 app.use(express.static(publicDirectoryPath));
 
 app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-app.get("/signup", (req, res) => {
-  res.render("signup");
+  const jwt = req.cookies.jwt;
+  if (jwt) {
+    res.render("mytasks");
+  } else {
+    res.render("index");
+  }
 });
 
 app.get("/user/mytasks", auth, (req, res) => {

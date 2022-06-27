@@ -1,6 +1,23 @@
 //loading spinner
 const spinner = document.querySelector(".loading-spinner");
 
+//navbar
+const navLinks = document.querySelector(".nav-links");
+const barIcon = document.querySelector(".barIcon");
+const crossBarIcon = document.querySelector(".crossBarIcon");
+
+barIcon.addEventListener("click", () => {
+  navLinks.style.display = "block";
+  barIcon.style.display = "none";
+  crossBarIcon.style.display = "block";
+});
+
+crossBarIcon.addEventListener("click", () => {
+  navLinks.style.display = "none";
+  crossBarIcon.style.display = "none";
+  barIcon.style.display = "block";
+});
+
 // add task area imports
 
 const taskList = document.querySelector(".tasks");

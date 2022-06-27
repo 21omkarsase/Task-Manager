@@ -6,17 +6,16 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    />
+      />
     <link type="text/css" rel="stylesheet" href="/css/tasks.css" />
     <title>Task Manager|Home</title>
   </head>
   <body>
-    <div class="loading-spinner">
-      <div class="lds-hourglass"></div>
-    </div>
+    {{>spinner}}
+    
     <div class="taskPen">
       <span class="pen">
-        <i class="pens fa-solid fa-pen"></i>
+       <i class="pens fa-solid fa-plus"></i>
       </span>
     </div>
     <div class="taskCross">
@@ -41,11 +40,11 @@
             <div class="personalInfo">
               <div class="username-area">
                 <label for="Username">Username</label>
-                <input id="username" type="text" name="username"  required/>
+                <input id="username" type="text" name="username" required/>
               </div>
               <div class="age-area">
                 <label for="age">Age</label>
-                <input id="age" type="number" name="userage"  required/>
+                <input id="age" type="number" name="userage" required/>
               </div>
               <div class="email-area">
                 <label for="useremail">Email</label>
@@ -70,46 +69,8 @@
         </div>
       </div>
     </section>
-    <section class="navbar-area">
-      <div class="navbar">
-        <nav class="navbar-nav">
-          <div class="brandLogo">
-            <img src="/assets/taskImg2.jpg" alt="brand logo" />
-          </div>
-          <div class="nav-links">
-            <ul>
-              <div class="nav-link-div">
-                <span><i class="fa-solid fa-house"></i></span>
-                <li class="nav-link">Home</li>
-              </div>
-              <div class="nav-link-div">
-                <span><i class="fa-solid fa-list-check"></i></span>
-                <li class="nav-link">Tasks</li>
-              </div>
-              <div class="nav-link-div">
-                <span><i class="fa-solid fa-address-card"></i></span>
-                <li class="nav-link">About Us</li>
-              </div>
-              <div class="nav-link-div">
-                <span><i class="fa-solid fa-list-check"></i></span>
-                <li class="nav-link">Contact Us</li>
-              </div>
-              <div class="accountNav nav-link-div">
-                <span><i class="fa-solid fa-user"></i></span>
-                <li class="nav-link">My Account</li>
-              </div>
-            </ul>
-            <form class="seach-bar searchForm">
-              <input type="search" placeholder="Search" name="searchbar" />
-              <a type="button" href=""><span class="searchIcon"><i
-                    class="fa-solid fa-magnifying-glass"
-                  ></i></span></a>
-            </form>
-          </div>
-        </nav>
-      </div>
-    </section>
-<section class="updateTaskArea">
+    {{>navbar}}
+    <section class="updateTaskArea">
       <div class="updateTask">
         <div class="updateTask__header">
           <h2>Update Task</h2>
@@ -118,21 +79,23 @@
           <form class="updateTask-form">
             <div class="updateTask__input">
               <label for="taskUpdatedName">Task Name</label>
-              <input type="text" name="taskUpdatedName" id="taskUpdatedName" required />
+              <input type="text" name="taskUpdatedName" id="taskUpdatedName"
+                required />
             </div>
             <div id="taskDueDate__input">
               <label for="taskUpdatedDueDate">Due Date</label>
-              <input type="date" name="taskUpdatedDueDate" id="taskUpdatedDueDate" required />
+              <input type="date" name="taskUpdatedDueDate"
+                id="taskUpdatedDueDate" required />
             </div>
             <div class="updateTask__input">
               <label for="taskUpdatedDescription">Task Description</label>
               <textarea
                 name="taskUpdatedDescription"
                 id="taskUpdatedDescription"
-                required
-              ></textarea>
+                required></textarea>
             </div>
-            <button onclick="closeUpdateTaskModal(this)" type="button" class="cancelTaskBtn">Cancel</button>
+            <button onclick="closeUpdateTaskModal(this)" type="button"
+              class="cancelTaskBtn">Cancel</button>
             <button type="submit" class="updateTaskBtn">Update Task</button>
           </form>
         </div>
@@ -158,26 +121,25 @@
               <textarea
                 name="taskDescription"
                 id="taskDescription"
-                required
-              ></textarea>
+                required></textarea>
             </div>
             <button type="submit" class="addTaskBtn">Add Task</button>
           </form>
         </div>
       </div>
     </section>
-     <section class="allTasksArea">
+    <section class="allTasksArea">
       <header>
         <h1>Welcome To Task Manager App</h1>
       </header>
       <div class="taskList">
         <div class="tasks">
-          
-      </div>
-    </section> 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
-    ></script>
-    <script src="/js/tasks.js"></script>
-  </body>
-</html>
+
+        </div>
+      </section>
+      {{>footer}}
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+      <script src="/js/tasks.js"></script>
+    </body>
+  </html>

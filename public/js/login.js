@@ -1,4 +1,6 @@
 //data
+const spinner = document.querySelector(".loading-spinner");
+
 const email = document.querySelector(".email");
 const password = document.querySelector(".password");
 const loginBtn = document.querySelector(".submitBtn");
@@ -15,6 +17,7 @@ form.addEventListener("submit", async (e) => {
   console.log(JSON.stringify(userData));
 
   try {
+    spinner.style.display = "block";
     const response = await fetch("/users/login", {
       method: "POST",
       headers: {
@@ -24,7 +27,7 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(userData),
     });
     const data = await response.json();
-    console.log(data);
+    spinner.style.display = "none";
   } catch (e) {
     console.log("error occured" + e);
   }

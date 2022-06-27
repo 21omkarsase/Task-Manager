@@ -1,4 +1,6 @@
 //data
+const spinner = document.querySelector(".loading-spinner");
+
 const username = document.querySelector(".username");
 const age = document.querySelector(".age");
 const email = document.querySelector(".email");
@@ -16,7 +18,7 @@ form.addEventListener("submit", async (e) => {
     password: password.value,
   };
   console.log(JSON.stringify(userData));
-
+  spinner.style.display = "block";
   const response = await fetch("/users/signup", {
     method: "POST",
     headers: {
@@ -27,7 +29,6 @@ form.addEventListener("submit", async (e) => {
   });
 
   const data = await response.json();
-  console.log(data);
-
+  spinner.style.display = "none";
   window.location.href = "/user/mytasks";
 });

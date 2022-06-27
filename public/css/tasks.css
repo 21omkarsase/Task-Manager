@@ -76,7 +76,7 @@ header h1 {
     cursor: pointer;
     background-color: black;
     color: white;
-    padding: 15px;
+    padding: 15px 17px;
     border-radius: 51%;
 }
 
@@ -136,13 +136,13 @@ button {
 .updateTaskArea {
     background-color: rgba(0, 0, 0, 0.694);
     display: none;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     height: 100vh;
     width: 100%;
     position: fixed;
     padding-top: 50px;
+    margin-top: -71px;
 }
 
 .formActive {
@@ -163,13 +163,12 @@ button {
 .addTask,
 .updateTask {
     background-color: white;
-    padding: 30px 60px;
+    padding: 30px 50px;
     border-radius: 15px;
 }
 
 .updateTask {
-    width: 50%;
-    max-width: 550px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -188,8 +187,10 @@ button {
 
 /* all task section  */
 .allTasksArea {
-    /* background-color: white; */
+    background-color: whitesmoke;
     padding: 0 0 100px 0;
+    min-height: 100vh;
+
 }
 
 .allTasksArea h1 {
@@ -224,13 +225,15 @@ button {
     width: 400px;
     min-width: 30px;
     max-width: 400px;
-    border: 2px solid green;
+    border: 5px solid rgb(135, 51, 37);
     height: 300px;
     min-height: 250px;
     padding: 25px 20px 25px 30px;
     border-radius: 7px;
     display: flex;
     gap: 10px;
+    background-color: white;
+    /* color: white; */
 }
 
 .content-area {
@@ -368,6 +371,18 @@ button {
 
 /* //navbar */
 
+.bar {
+    display: none;
+}
+
+.crossBarIcon {
+    display: none;
+}
+
+.bar span {
+    font-size: 50px;
+}
+
 .navbar-area {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.829);
@@ -450,4 +465,304 @@ a {
 .signupbtn {
     padding: 10px 20px;
     border-radius: 10px;
+}
+
+/* //footer area  */
+.footer-area {
+    width: 100%;
+    padding: 80px 0px 60px 0;
+    background-color: rgba(0, 0, 0, 0.68);
+    color: white;
+}
+
+.footer-area li {
+    list-style: none;
+    text-decoration: none;
+}
+
+.footer {
+    width: 70%;
+    margin: 0 0 0 10%;
+}
+
+.footer-foot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-foot .other-info {
+    display: flex;
+    gap: 40px;
+}
+
+.about {
+    width: 40%;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.contacts,
+.features,
+.company {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.other-info h3 {
+    font-size: 23px;
+}
+
+.social-icons span {
+    font-size: 19px;
+}
+
+.linkedin span {
+    color: #0e76a8;
+}
+
+.instagram span {
+    color: red;
+}
+
+.twitter span {
+    color: #00acee;
+}
+
+.mail span {
+    color: pink;
+}
+
+.contacts a {
+    text-decoration: none;
+    color: white;
+}
+
+.features,
+.company li {
+    cursor: pointer;
+}
+
+.info-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.info-icons span {
+    font-size: 20px;
+}
+
+.globe {
+    color: #00acee;
+}
+
+.check {
+    color: greenyellow;
+}
+
+.clipboard-check {
+    color: #47B5FF;
+}
+
+.about p {
+    font-size: 20px;
+}
+
+/* //media queries  */
+
+/* //navbar  */
+@media screen and (max-width:1269px) {
+    .navbar-nav ul {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width:1155px) {
+    .navbar {
+        width: 95%;
+        margin: 0 2%;
+    }
+}
+
+@media screen and (max-width:975px) {
+    .seach-bar input {
+        display: none;
+    }
+}
+
+@media screen and (max-width:730px) {
+
+    .addTaskArea,
+    .updateTaskArea {
+        margin-top: -80px;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .bar {
+        display: block;
+        cursor: pointer;
+    }
+
+    .barnav {
+        padding: 5px 10px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .brandLogo {
+        align-self: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        display: none;
+        gap: 20px;
+    }
+
+    .navbar-nav ul {
+        flex-direction: column;
+    }
+
+    .nav-link-div {
+        align-self: flex-start;
+        gap: 10px;
+    }
+
+    .seach-bar {
+        align-self: center;
+        padding: 15px 0px;
+        justify-content: center;
+    }
+
+
+}
+
+/* //footer  */
+@media screen and (max-width:905px) {
+    .footer-foot {
+        flex-direction: column;
+    }
+
+    .footer-foot .about {
+        width: 100%;
+        padding-bottom: 15px;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .footer {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width:390px) {
+    .footer-foot .other-info {
+        gap: 11px;
+    }
+}
+
+@media screen and (max-width:580px) {
+    header h1 {
+        font-size: 28px;
+    }
+}
+
+/* //update task  */
+@media screen and (max-width:550px) {
+
+    input,
+    textarea,
+    button {
+        min-width: 300px;
+    }
+
+    .updateTask {
+        min-width: 10px;
+        width: 390px;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .addTask {
+        padding: 15px 25px;
+    }
+
+    .updateTask {
+        width: 350px;
+        padding: 15 30px;
+    }
+}
+
+@media screen and (max-width:380px) {
+
+    input,
+    textarea,
+    button {
+        min-width: 250px;
+    }
+}
+
+@media screen and (max-width:350px) {
+
+    .updateTask {
+        width: 300px;
+    }
+}
+
+
+/* // profile  */
+@media screen and (max-width:1045px) {
+    .myprofile ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .myprofile {
+        flex-direction: column;
+    }
+
+    .profileAreaBtns {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .profileArea {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width:685px) {
+    .profileArea {
+        width: 85%;
+    }
+
+    .profileAreaBtns button {
+        width: 130px;
+    }
+
+    .profileArea input {
+        min-width: 10px;
+        width: 333px;
+    }
+}
+
+@media screen and (max-width:530px) {
+    .profileArea {
+        width: 95%;
+        padding: 25px 40px;
+    }
+
+    .profileArea input {
+        min-width: 10px;
+        width: 280px;
+    }
 }
