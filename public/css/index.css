@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500&family=Aleo&family=Heebo&family=Oswald:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -125,7 +128,7 @@ main h2 {
     justify-content: center;
     flex-direction: column;
     color: white;
-    gap: 25px;
+    gap: 15px;
 }
 
 .info-heading span {
