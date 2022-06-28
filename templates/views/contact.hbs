@@ -1,0 +1,171 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link type="text/css" rel="stylesheet" href="/css/contact.css" />
+    <title>Task Manager|Contact</title>
+  </head>
+  <body>
+    <section class="navbar-area">
+      <div class="navbar">
+        <nav class="navbar-nav">
+          <div class="barnav">
+            <div class="brandLogo">
+              <img src="/assets/taskImg2.jpg" alt="brand logo" />
+            </div>
+            <div class="bar">
+              <span class="barIcon">
+                <i class="fa-solid fa-bars"></i>
+              </span>
+              <span class="crossBarIcon">
+                <i class="fa-solid fa-xmark"></i>
+              </span>
+            </div></div>
+
+          <div class="nav-links">
+            <ul>
+              <a href="/user/mytasks">
+                <div class="nav-link-div">
+
+                  <span><i class="fa-solid fa-house"></i></span>
+                  <li class="nav-link">Home</li>
+                </div></a>
+              <a href="/">
+                <div class="nav-link-div">
+                  <span><i class="fa-solid fa-list-check"></i></span>
+                  <li class="nav-link">Tasks</li>
+                </div></a>
+              <div class="nav-link-div">
+                <span><i class="fa-solid fa-address-card"></i></span>
+                <li class="nav-link">About Us</li>
+              </div>
+              <div class="nav-link-div">
+                <span><i class="fa-solid fa-list-check"></i></span>
+                <li class="nav-link">Contact Us</li>
+              </div>
+            </ul>
+            <form class="seach-bar searchForm">
+              <input type="search" placeholder="Search" name="searchbar" />
+              <a type="button" href=""><span class="searchIcon"><i
+                    class="fa-solid fa-magnifying-glass"
+                  ></i></span></a>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <section class="contact-section">
+      <div class="main-area">
+        <div class="contactInfo">
+          <div>
+            <h3>Contact Info</h3>
+            <hr />
+          </div>
+          <div class="nameArea">
+            <span class="mainIcons"><i class="fa-solid fa-user"></i></span>
+            <div class="name">
+              <span>Name</span>
+              <h4>Omkar Ramkrishna Sase</h4>
+            </div>
+          </div>
+          <div class="addressArea">
+            <span class="mainIcons"><i
+                class="fa-solid fa-location-dot"
+              ></i></span>
+            <div class="address">
+              <span>Address</span>
+              <h4>Thane, Maharashtra.</h4>
+            </div>
+          </div>
+          <div class="emailArea">
+            <span class="mainIcons"><i class="fa-solid fa-envelope"></i></span>
+            <div class="email">
+              <span>Email</span>
+              <h4>
+                <a target="_blank" href="mailto:saseomkar214@gmail.com">
+                  saseomkar214@gmail.com
+                </a>
+              </h4>
+            </div>
+          </div>
+          <div class="social-links">
+            <a target="_blank" href="https://www.linkedin.com/in/omkarsase/">
+              <span class="linkedin icons"><i
+                  class="fa-brands fa-linkedin"
+                ></i></span>
+            </a>
+            <a target="_blank" href="https://github.com/21omkarsase">
+              <span class="github icons"><i
+                  class="fa-brands fa-github"
+                ></i></span>
+            </a>
+            <a target="_blank" href="https://twitter.com/_OmkarSase">
+              <span class="twitter icons"><i
+                  class="fa-brands fa-twitter-square"
+                ></i></span>
+            </a>
+            <a target="_blank" href="https://www.instagram.com/_omkarsase/">
+              <span class="instagram icons"><i
+                  class="fa-brands fa-instagram"
+                ></i></span>
+            </a>
+            <a target="_blank" href="https://www.facebook.com/omkar.sase.560/">
+              <span class="facebook icons"><i
+                  class="fa-brands fa-facebook-square"
+                ></i></span>
+            </a>
+          </div>
+        </div>
+        <form class="contactForm">
+          <div class="firstRow">
+            <div class="nameDiv">
+              <input
+                required
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Name"
+              />
+            </div>
+            <div class="emailDiv">
+              <input
+                required
+                id="email"
+                type="text"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          <div class="secondRow">
+            <input
+              required
+              id="subject"
+              type="text"
+              name="subject"
+              placeholder="Subject"
+            />
+          </div>
+          <div class="thirdRow">
+            <textarea
+              required
+              id="message"
+              name="message"
+              cols="40"
+              rows="2"
+              placeholder="Message"
+            ></textarea>
+          </div>
+          <div class="btn">
+            <button type="submit">Send Message</button>
+          </div>
+        </form></div>
+    </section>
+    <script src="/js/contact.js"></script>
+  </body>
+</html>

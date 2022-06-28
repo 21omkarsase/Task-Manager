@@ -6,17 +6,12 @@ const navLinks = document.querySelector(".nav-links");
 const barIcon = document.querySelector(".barIcon");
 const crossBarIcon = document.querySelector(".crossBarIcon");
 
-barIcon.addEventListener("click", () => {
-  navLinks.style.display = "block";
-  barIcon.style.display = "none";
-  crossBarIcon.style.display = "block";
-});
-
-crossBarIcon.addEventListener("click", () => {
-  navLinks.style.display = "none";
-  crossBarIcon.style.display = "none";
-  barIcon.style.display = "block";
-});
+//header
+const header = document.querySelector(".header");
+const sortSelect = document.querySelector("#sortSelect");
+const viewSelect = document.querySelector("#viewSelect");
+const sortTasks = document.querySelector(".sortTasks");
+const viewTasks = document.querySelector(".viewTasks");
 
 // add task area imports
 
@@ -66,6 +61,32 @@ const saveBtn = document.querySelector(".saveBtn");
 const logout = document.querySelector(".logout");
 const logoutall = document.querySelector(".logoutall");
 const deleteAccount = document.querySelector(".deleteAccount");
+
+//navbar
+
+barIcon.addEventListener("click", () => {
+  navLinks.style.display = "block";
+  barIcon.style.display = "none";
+  crossBarIcon.style.display = "block";
+});
+
+crossBarIcon.addEventListener("click", () => {
+  navLinks.style.display = "none";
+  crossBarIcon.style.display = "none";
+  barIcon.style.display = "block";
+});
+
+const navLinkDivs = document.getElementsByClassName("nav-link-div");
+Array.from(navLinkDivs).forEach((link) => {
+  link.addEventListener("mouseenter", () => {
+    link.style.borderBottom = "2px solid white";
+    link.style.marginBottom = "5px";
+  });
+  link.addEventListener("mouseleave", () => {
+    link.style.borderBottom = "none";
+    link.style.marginBottom = "0px";
+  });
+});
 
 //add task area
 
@@ -131,16 +152,29 @@ personalInfoBtn.addEventListener("click", () => {
 
 const fetchTasks = async () => {
   const response = await fetch("/user/tasks");
-
   if (response.ok) {
     const data = await response.json();
-    data.reverse();
     let html = "";
     if (data.length < 1) {
-      html = "<h2>No Tasks Found</h2>";
+      header.style.display = "block";
+      html = `<h2>No Tasks Found<p style="font-size:16px;">create your first task now</p></h2>`;
+      sortTasks.style.display = "none";
+      viewTasks.style.display = "none";
     } else {
+      header.style.display = "none";
+      sortTasks.style.display = "flex";
+      viewTasks.style.display = "flex";
+      const sortVal = sortSelect.options[sortSelect.selectedIndex].value;
+      const viewVal = viewSelect.options[viewSelect.selectedIndex].value;
+      if (sortVal === "newestFirst") {
+        data.reverse();
+      }
       data.forEach((task) => {
-        html += `
+        let duepart1 = task.due.split("T")[0];
+        let duepart2 = task.due.split("T")[1].split(".")[0];
+        let dueDate = `${duepart1} (${duepart2})`;
+        if (viewVal === "board") {
+          html += `
                   <div class="task1 task">
                   <div class="content-area">
                     <label align="justify" for="taskTitle"><span class="heading">Ttile
@@ -150,7 +184,7 @@ const fetchTasks = async () => {
                     <label align="justify" for="taskDue"><span class="heading">
                         Due :
                       </span>
-                    ${task.due}</label>
+                    ${dueDate}</label>
                     <label for="Des"><span class="heading"> Description : </span>
                     </label>
                     <p align="justify" class="content">
@@ -169,6 +203,23 @@ const fetchTasks = async () => {
                 </div>
               </div>
           `;
+        } else if (viewVal === "list") {
+          html += `<div class="listTask">
+            <div class="listTaskInfo">
+              <p><span class="listTaskHeading">Title :</span><span class="listtaskdes">  ${task.task}</span></p>
+              <p><span class="listTaskHeading">Due : </span><span class="listtaskdes">  ${dueDate}</span></p>
+              <p><span class="listTaskHeading">Description :</span><p class="listtaskdes">  ${task.description}</p></p><p class="taskId">${task._id}</p>
+            </div>
+            <div class="listTaskIcons">
+              <span class="edit" onclick="updateTask(this)">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </span>
+              <span class="trash" onclick="deleteTask(this)">
+                <i class="fa-solid fa-trash-can-arrow-up"></i>
+              </span>
+            </div>
+          </div>`;
+        }
       });
     }
     taskList.innerHTML = html;
@@ -247,11 +298,10 @@ const updateTask = async (el) => {
     const response = await fetch(`/user/tasks/${updateTaskId}`);
     const data = await response.json();
     spinner.style.display = "none";
-    let duedate = data.due.split("T")[0];
-    // console.log(data);
+    // let duedate = data.due.split("T")[0];
     taskUpdatedName.value = data.task;
     taskUpdatedDescription.value = data.description;
-    taskUpdatedDueDate.value = duedate;
+    taskUpdatedDueDate.value = data.due;
   }
 };
 
@@ -401,4 +451,26 @@ deleteAccount.addEventListener("click", async () => {
     }
     window.location.href = "/";
   }
+});
+
+//header
+
+sortSelect.addEventListener("change", async (e) => {
+  const selectVal = e.target.value;
+
+  if (selectVal === "newestFirst") {
+    const response = await fetch(`/user/tasks?sortBy=createdAt:desc`);
+    const data = await response.json();
+  } else if (selectVal === "oldestFirst") {
+    const response = await fetch(`/user/tasks?sortBy=createdAt:asc`);
+    const data = await response.json();
+  }
+});
+
+sortSelect.addEventListener("change", () => {
+  fetchTasks();
+});
+
+viewSelect.addEventListener("change", () => {
+  fetchTasks();
 });

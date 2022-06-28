@@ -3,17 +3,7 @@ const navLinks = document.querySelector(".nav-links");
 const barIcon = document.querySelector(".barIcon");
 const crossBarIcon = document.querySelector(".crossBarIcon");
 
-barIcon.addEventListener("click", () => {
-  navLinks.style.display = "block";
-  barIcon.style.display = "none";
-  crossBarIcon.style.display = "block";
-});
-
-crossBarIcon.addEventListener("click", () => {
-  navLinks.style.display = "none";
-  crossBarIcon.style.display = "none";
-  barIcon.style.display = "block";
-});
+//login
 
 const loginSection = document.querySelector(".login-section");
 const signupSection = document.querySelector(".signup-section");
@@ -122,4 +112,32 @@ signupForm.addEventListener("submit", async (e) => {
   const data = await response.json();
   spinner.style.display = "none";
   window.location.href = "/user/mytasks";
+});
+
+barIcon.addEventListener("click", () => {
+  navLinks.style.display = "block";
+  barIcon.style.display = "none";
+  crossBarIcon.style.display = "block";
+});
+
+crossBarIcon.addEventListener("click", () => {
+  navLinks.style.display = "none";
+  crossBarIcon.style.display = "none";
+  barIcon.style.display = "block";
+});
+
+const navLinkDivs = document.getElementsByClassName("nav-link-div");
+console.log(navLinkDivs);
+Array.from(navLinkDivs).forEach((link) => {
+  console.log(link);
+  link.addEventListener("mouseenter", () => {
+    console.log("hoved");
+    link.style.borderBottom = "2px solid white";
+    link.style.marginBottom = "5px";
+  });
+  link.addEventListener("mouseleave", () => {
+    console.log("hoved");
+    link.style.borderBottom = "none";
+    link.style.marginBottom = "0px";
+  });
 });
