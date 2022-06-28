@@ -549,7 +549,7 @@ button {
     }
 }
 
-@media screen and (max-width:730px) {
+@media screen and (max-width:772px) {
 
     .navbar-nav {
         flex-direction: column;
@@ -579,6 +579,7 @@ button {
 
     .navbar-nav ul {
         flex-direction: column;
+        padding-bottom: 10px;
     }
 
     .nav-link-div {
@@ -612,17 +613,31 @@ button {
     }
 }
 
-@media screen and (max-width:450px) {
+
+@media screen and (max-width:585px) {
+    .sec-div {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width:449px) {
     .sec-div img {
         width: 245px;
     }
 
     .joinBtn {
-        width: 234px;
+        width: 248px;
     }
 
     .main-div {
         padding: 0 20px;
+    }
+
+    .sec-div {
+        width: 95%;
+        margin: 0 auto;
+        justify-content: center;
     }
 }
 

@@ -671,13 +671,13 @@ a {
     }
 }
 
-@media screen and (max-width:975px) {
+@media screen and (max-width:988px) {
     .seach-bar input {
         display: none;
     }
 }
 
-@media screen and (max-width:730px) {
+@media screen and (max-width:763px) {
 
     .addTaskArea,
     .updateTaskArea {
