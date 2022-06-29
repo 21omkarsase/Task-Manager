@@ -60,7 +60,7 @@ app.post("/users/signup", async (req, res) => {
     const token = await user.generateAuthToken();
 
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 3000000),
+      expires: new Date(Date.now() + 86400000),
       httpOnly: true,
       // secure:true
     });
@@ -78,7 +78,7 @@ app.post("/users/login", async (req, res) => {
     );
     const token = await user.generateAuthToken();
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 3000000),
+      expires: new Date(Date.now() + 86400000),
       httpOnly: true,
     });
     res.status(201).send({ user, token });
