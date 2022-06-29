@@ -418,6 +418,7 @@ main h2 {
     font-weight: 600;
     color: #333;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .main-login img,
@@ -651,6 +652,14 @@ button {
     }
 }
 
+@media screen and (max-width:1031px) {
+
+    .crossLoginHeader,
+    .crossSignupHeader {
+        width: 90%;
+    }
+}
+
 @media screen and (max-width:970px) {
 
     .crossLoginHeader,
@@ -681,6 +690,11 @@ button {
         justify-content: center;
         align-items: center;
         gap: 30px;
+    }
+
+    .login-area,
+    .signup-area {
+        margin-bottom: 150px;
     }
 }
 
